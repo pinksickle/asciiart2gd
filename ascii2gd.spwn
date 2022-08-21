@@ -1,0 +1,14 @@
+extract obj_props
+$.print("
+
+ █████  ███████  ██████ ██ ██ ██████   ██████  ██████
+██   ██ ██      ██      ██ ██      ██ ██       ██   ██
+███████ ███████ ██      ██ ██  █████  ██   ███ ██   ██
+██   ██      ██ ██      ██ ██ ██      ██    ██ ██   ██
+██   ██ ███████  ██████ ██ ██ ███████  ██████  ██████
+
+")
+path = $.get_input("Paste the location of your ascii art here: ")
+art = $.readfile(path)
+
+$.add(art.to_obj().with(X, 90).with(Y, 150))
