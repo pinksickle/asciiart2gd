@@ -9,9 +9,11 @@ $.print("
 
 ")
 path = $.get_input("Paste the location of your ascii art here: ")
+x = $.get_input("Text X: ")
+y = $.get_input("Text Y: ")
 art = $.readfile(path)
 artstring = art as @string
 
 $.print(artstring)
 
-$.add(artstring.to_obj().with(X, 90).with(Y, 150))
+$.add(artstring.to_obj().with(X, x as @number).with(Y, y as @number))
