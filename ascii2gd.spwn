@@ -8,12 +8,31 @@ $.print("
 ██   ██ ███████  ██████ ██ ██ ███████  ██████  ██████
 
 ")
-path = $.get_input("Paste the location of your ascii art here: ")
-x = $.get_input("Text X: ")
-y = $.get_input("Text Y: ")
-art = $.readfile(path)
-artstring = art as @string
+let path = $.get_input("Paste the location of your ascii art here: ")
+let mode = $.get_input("Split text at line breaks? (y/n): ")
+if mode == "y" || mode == "Y" {
+    mode = true
+} else { 
+    if mode == "n" || mode == "N" {
+        mode = false
+    } else {
+        $.print("Invalid input. Defaulting to no splitting")
+        mode = false
+    }
+}
+let x = $.get_input("Text X: ")
+let y = $.get_input("Text Y: ")
+let art = $.readfile(path)
+let artstring = art as @string
 
 $.print(artstring)
+if !mode {
+    $.add(artstring.to_obj().with(X, x as @number).with(Y, y as @number))
+} else {
+    let lines = artstring.split("\n")
+    for i in 0 .. lines.length {
+      let el = lines[i]
+      $.add(el.to_obj().with(X, x as @number).with(Y, y as @number - 30*i))
+    }
+}
 
-$.add(artstring.to_obj().with(X, x as @number).with(Y, y as @number))
